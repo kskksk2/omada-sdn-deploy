@@ -2,7 +2,7 @@
 # =====================================
 # ✅ Omada SDN AWS 서버 클린 컨피그 (2025.04 최신)
 # 목적: AWS EC2 Ubuntu 22.04 + Omada SDN v5.15.20.16 완전 자동 구축
-# 도메인: ken-network.online (서브도메인: omada2.ken-network.online)
+# 도메인: ken-network.online (서브도메인: omada.ken-network.online)
 # 서버 IP 예시: 18.179.54.42
 # =====================================
 
@@ -48,7 +48,7 @@ sudo rm -f /etc/nginx/sites-enabled/default
 
 # [8] Nginx 중지 후 Certbot 사전 인증서 발급 (Nginx 설정 전에)
 sudo systemctl stop nginx
-sudo certbot certonly --standalone -d omada2.ken-network.online --agree-tos -m 1768ksk@gmail.com --no-eff-email --non-interactive
+sudo certbot certonly --standalone -d omada.ken-network.online --agree-tos -m 1768ksk@gmail.com --no-eff-email --non-interactive
 
 # [9] Nginx 리버스 프록시 설정
 sudo tee /etc/nginx/sites-available/omada > /dev/null <<EOF
@@ -80,13 +80,13 @@ sudo ln -sf /etc/nginx/sites-available/omada /etc/nginx/sites-enabled/omada
 sudo nginx -t && sudo systemctl restart nginx
 
 # [10] 인증서 리디렉션 자동 구성 적용 (이미 발급된 경우에도 실행 가능)
-sudo certbot --nginx -d omada2.ken-network.online --agree-tos -m 1768ksk@gmail.com --no-eff-email --redirect || true
+sudo certbot --nginx -d omada.ken-network.online --agree-tos -m 1768ksk@gmail.com --no-eff-email --redirect || true
 
 # [11] 자동 갱신 테스트
 sudo certbot renew --dry-run
 
 # [💡] 브라우저 접속
-# https://omada2.ken-network.online
+# https://omada.ken-network.online
 # 최초 로그인 후 Omada 초기 설정 마법사 진행
 
 # 🎉 구축 완료!
