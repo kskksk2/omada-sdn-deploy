@@ -11,6 +11,10 @@ sudo apt update && sudo apt upgrade -y
 sudo timedatectl set-timezone Asia/Tokyo
 sudo apt install curl wget gnupg lsb-release net-tools -y
 
+# [0.5] SSH 12322 포트 리스닝 추가 ← 요기에 삽입 추천!
+sudo sed -i 's/^#Port 22/Port 22\nPort 12322/' /etc/ssh/sshd_config
+sudo systemctl restart ssh
+
 # [1] UFW 방화벽 설정 (포트 오픈 및 기본 정책 설정)
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
