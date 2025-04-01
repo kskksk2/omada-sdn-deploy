@@ -54,16 +54,16 @@ sudo certbot certonly --standalone -d omada2.ken-network.online --agree-tos -m 1
 sudo tee /etc/nginx/sites-available/omada > /dev/null <<EOF
 server {
     listen 80;
-    server_name omada2.ken-network.online;
+    server_name omada.ken-network.online;
     return 301 https://\$host\$request_uri;
 }
 
 server {
     listen 443 ssl;
-    server_name omada2.ken-network.online;
+    server_name omada.ken-network.online;
 
-    ssl_certificate /etc/letsencrypt/live/omada2.ken-network.online/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/omada2.ken-network.online/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/omada.ken-network.online/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/omada.ken-network.online/privkey.pem;
 
     location / {
         proxy_pass https://localhost:8043;
