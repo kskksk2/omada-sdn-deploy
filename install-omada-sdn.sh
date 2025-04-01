@@ -11,11 +11,14 @@ sudo apt update && sudo apt upgrade -y
 sudo timedatectl set-timezone Asia/Tokyo
 sudo apt install curl wget gnupg lsb-release net-tools -y
 
-# [1] UFW 방화벽 설정 (포트 오픈)
+# [1] UFW 방화벽 설정 (포트 오픈 및 기본 정책 설정)
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
 sudo ufw allow 12322/tcp       # SSH 사용자 지정 포트
+sudo ufw allow 22/tcp          # SSH 기본 포트도 예비로 허용
 sudo ufw allow 80,443,8043,8088/tcp
 sudo ufw allow 29810:29813/tcp
-sudo ufw enable
+sudo ufw --force enable
 
 # [2] OpenJDK 17 & jsvc 설치 (필수!)
 sudo apt install openjdk-17-jre-headless jsvc -y
